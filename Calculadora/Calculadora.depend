@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1618585903 source:/home/ignacio/Escritorio/tp_laboratorio_1/Calculadora/main.c
+1618587357 source:/home/ignacio/Escritorio/tp_laboratorio_1/Calculadora/main.c
 	<stdio.h>
 	<stdlib.h>
 	"Funciones.h"
@@ -8,7 +8,7 @@
 	<stdio.h>
 	<stdlib.h>
 
-1618586049 source:/home/ignacio/Escritorio/tp_laboratorio_1/Calculadora/Funciones.c
+1618587835 source:/home/ignacio/Escritorio/tp_laboratorio_1/Calculadora/Funciones.c
 	<stdio.h>
 	<stdlib.h>
 	"Funciones.h"
