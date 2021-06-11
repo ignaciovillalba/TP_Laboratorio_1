@@ -1,205 +1,231 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "Funciones.h"
+#include "funciones.h"
 
-void Menu (float numeroA, float numeroB)
+
+void MainMenu (float numberA, float numberB)
 {
-    printf ("\n\nBIENVENIDO A LA CALCULADORA\n\n");
-    printf ("  Seleccione una opcion  \n\n");
-    printf ("1) Ingresar 1er valor (A= %.2f ) \n", numeroA);/**< Se muestra el valor cargado en A hasta el momento */
-    printf ("2) Ingresar 2do valor (B= %.2f ) \n", numeroB);/**< Se muestra el valor cargado en B hasta el momento */
-    printf ("3) Calcular todas las operaciones.");
-    printf ("\n 		a) Calcular la suma (A+B)");
-    printf ("\n		b) Calcular la resta (A-B)");
-    printf ("\n 		c) Calcular la division (A/B)");
-    printf ("\n		d) Calcular la multiplicacion (A*B)");
-    printf ("\n 		e) Calcular el factorial (A! B!)");
-    printf ("\n4) Informar resultados \n");
-    printf ("5) Salir\n\n");
+    printf("BIENVENIDOS A LA CALCULADORA");
+    printf("\n\n 1) Ingresar 1er operando (A= %.2f )",numberA);/**< Se muestra el valor cargado en A hasta el momento */
+    printf("\n 2) Ingresar 2do operando (B= %.2f )",numberB);/**< Se muestra el valor cargado en B hasta el momento */
+    printf("\n 3)Calcular todas las operaciones");
+    printf("\n\t A)Calcular la suma (A+B)");
+    printf("\n\t B)Calcular la resta (A-B)");
+    printf("\n\t C)Calcular la division (A/B)");
+    printf("\n\t D)Calcular la multiplicacion (A*B)");
+    printf("\n\t E)Calcular el factorial (A! B!)");
+    printf("\n 4)Informar resultados");
+    printf("\n 5)Salir");
 }
 
-float obtenerNumero (float numero, char mensaje[])
+float obtainNumber(char message[])
 {
-    float numeroAuxiliar;
-    printf ("%s", mensaje);
+    float auxiliaryNumber;
+
+    printf("%s",message);
     fflush(stdin);
-    scanf ("%f", &numeroAuxiliar);
-    return numeroAuxiliar;
+
+    scanf("%f",&auxiliaryNumber);
+
+    return auxiliaryNumber;
 }
 
-void realizarSwitch( float numeroA, float numeroB)
+void doSwitch(float numberA,float numberB)
 {
-
-    int opcionElegida;
-    float operacionSuma;
-    float operacionResta;
-    float operacionMultiplicacion;
-    float operacionDivision;
+    int option;
+    float additionValue;
+    float substractionValue;
+    float multiplicationValue;
+    float divisionValue;
     int factorialA;
     int factorialB;
     int comprobacionIngresoA=0;
     int comprobacionIngresoB=0;
     int comprobacionCaso3=0;
-    int c;
 
     do
     {
-        Menu (numeroA, numeroB);
-        opcionElegida= obtenerNumero(opcionElegida,"Ingrese opcion: ");
-        system("clear");
+        MainMenu(numberA,numberB);
+        option=obtainNumber("\n\nIngrese una opcion: ");
+        system("cls");
 
-        switch (opcionElegida)
+        switch(option)
         {
         case 1:
-            numeroA = obtenerNumero (numeroA,"\nEligio la 1ra opcion\nIngrese primer valor: ");
-            comprobacionIngresoA=1;/**< Se verifica que se haya cargado un valor en numeroA */
-            system("clear");
+            numberA=obtainNumber("\n Eligio la 1ra opcion.\nIngrese primer valor: ");
+            comprobacionIngresoA=1;/**< Se verifica que se haya cargado un valor en numberA */
+            system("cls");
             break;
-
         case 2:
-            numeroB = obtenerNumero (numeroB,"\nEligio la 2da opcion\nIngrese segundo valor: ");
-            comprobacionIngresoB=1;/**< Se verifica que se haya cargado un valor en numeroB */
-            system("clear");
+            numberB=obtainNumber("\nEligio la 2da opcion.\n Ingrese segundo valor: ");
+            comprobacionIngresoB=1;/**< Se verifica que se haya cargado un valor en numberB */
+            system("cls");
             break;
-
         case 3:
-            if (comprobacionIngresoA==1 && comprobacionIngresoB==1) /**< Si ambos valores se ingresaron se realiza el switch 3 */
+
+            if(comprobacionIngresoA==1 && comprobacionIngresoB==1)/**< Si ambos valores se ingresaron se realiza el switch 3 */
             {
-                printf(" \nSe han realizado todas las operaciones. si desea conocer el resultado elija la opcion 4.\n");
-                operacionSuma = funcionSuma (numeroA, numeroB);
-                operacionResta = funcionResta (numeroA, numeroB);
-                operacionMultiplicacion = funcionMultiplicacion (numeroA, numeroB);
-                operacionDivision = funcionDivision (numeroA, numeroB);
-                factorialA = funcionFactorial (numeroA);
-                factorialB = funcionFactorial (numeroB);
+                additionValue=additionFunction(numberA,numberB);
+                substractionValue=substractionFunction(numberA,numberB);
+                multiplicationValue=multiplicationFunction(numberA,numberB);
+                divisionValue=divisionFunction(numberA,numberB);
+                factorialA=factorialFunction(numberA);
+                factorialB=factorialFunction(numberB);
+                printf("\nSe han realizado todas las operaciones.\nPresione 4 para informar los resultados.\n\n");
                 comprobacionCaso3=1;/**< Se comprueba que se haya hecho el calculo de los valores. */
             }
             else if (comprobacionIngresoA==0 && comprobacionIngresoB==1)
             {
-                numeroA = obtenerNumero (numeroA,"\nERROR! no ingreso ningun 1er valor.\nIngrese primer valor: ");
+                numberA=obtainNumber("\nERROR! no ingreso ningun 1er valor.\nIngrese primer valor: ");
                 comprobacionIngresoA=1;
-                system("clear");
+                MainMenu (numberA, numberB);
+                system("cls");
             }
             else if(comprobacionIngresoA==1 && comprobacionIngresoB==0)
             {
-                numeroB = obtenerNumero (numeroB,"\nERROR! no ingreso ningun 2do valor.\nIngrese segundo valor: ");
+                numberB = obtainNumber ("\nERROR! no ingreso ningun 2do valor.\nIngrese segundo valor: ");
                 comprobacionIngresoB=1;
-                system("clear");
+                MainMenu(numberA, numberB);
+                system("cls");
             }
             else
             {
-                printf("\nERROR! Usted no cargo ningun valor en A o B .\n");
+                MainMenu (numberA, numberB);
+                printf("\n\nERROR! Usted no cargo ningun valor en A o B .\n");
+                system("pause");
+                system("cls");
             }
-
             fflush(stdin);
             break;
-
         case 4:
             if (comprobacionIngresoA==1 && comprobacionIngresoB==1 && comprobacionCaso3==1)
             {
-                mensaje("\nEl resultado de la suma es: ", operacionSuma);
-                mensaje("El resultado de la resta es: ", operacionResta);
-                mensaje("El resultado de la multiplicacion es: ", operacionMultiplicacion);
+                resultMessage("\nEl resultado de la suma es: ", additionValue);
+                resultMessage("El resultado de la resta es: ", substractionValue);
+                resultMessage("El resultado de la multiplicacion es: ", multiplicationValue);
 
-                if(numeroB == 0)
+                if (numberA == 0)
                 {
-                    printf("No se puede dividir por 0 \n");
+                    resultMessage("No se puede dividir por cero. A= ", numberB);
                 }
                 else
                 {
-                    printf("El valor de la division es: %.2f\n", operacionDivision);
+                    resultMessage("El resultado de la division es: ", divisionValue);
                 }
 
                 if (factorialA==0 || factorialA==-1)
                 {
-                    mensaje("\nNo se puede calcular el factorial de un numero con coma o negativo. A=", numeroA);
+                    resultMessage("No se puede calcular el factorial de un numero con coma o negativo. A=", numberA);
                 }
                 else
                 {
-                    mensaje ("El factorial de A es: ", factorialA);
+                    resultMessage ("El factorial de A es: ", factorialA);
                 }
 
                 if (factorialB==0 || factorialB==-1)
                 {
-                    mensaje("No se puede calcular el factorial de un numero con coma o negativo. B=", numeroB);
+                    resultMessage("No se puede calcular el factorial de un numero con coma o negativo. B=", numberB);
                 }
                 else
                 {
-                    mensaje ("El factorial de B es: ", factorialB);
+                    resultMessage ("El factorial de B es: ", factorialB);
                 }
-                c=getc(stdin);
+                system("pause");
+                system("cls");
             }
             else if (comprobacionIngresoA==0 || comprobacionIngresoB==0)
             {
-                printf("\nERROR! Usted no cargo ningun valor en A o B .\n");
+                MainMenu (numberA, numberB);
+                printf("\n\nERROR! Usted no cargo ningun valor en A o B .\n");
+                system("pause");
+                system("cls");
             }
             else if(comprobacionCaso3==0)
             {
-                printf("\nERROR! Usted no realizo el calculo de los valores.\n");
+                MainMenu(numberA, numberB);
+                printf("\n\nERROR! Usted no realizo el calculo de los valores.\n");
+                system("pause");
+                system("cls");
             }
             break;
-
         case 5:
+            system("cls");
             printf("\nUsted eligio la opcion de salir de la calculadora.Hasta luego.\n\n");
-            c=getc(stdin);
             break;
         default:
-            Menu (numeroA, numeroB);
-            mensaje("ERROR! Eso no es una opcion:",opcionElegida);
+            MainMenu(numberA,numberB);
+            resultMessage("\n\nERROR! Eso no es una opcion: ",option);
+            system("pause");
+            system("cls");
             break;
         }
     }
-    while (opcionElegida != 5);
-}
-void mensaje(char msj[], float valor)
-{
-    printf("%s %.2f\n\n", msj, valor);
+    while (option!=5);
 }
 
-float funcionSuma (float numeroA, float numeroB)
+float additionFunction(float numberA,float numberB)
 {
-    return (numeroA) + (numeroB);;
+    float auxiliaryValue;
+
+    auxiliaryValue= numberA+(numberB);
+
+    return auxiliaryValue;
 }
 
-float funcionResta (float numeroA, float numeroB)
+float substractionFunction(float numberA,float numberB)
 {
-    return (numeroA) - (numeroB);
+    float auxiliaryValue;
+
+    auxiliaryValue = numberA-(numberB);
+
+    return auxiliaryValue;
 }
 
-float funcionDivision (float numeroA, float numeroB)
+float multiplicationFunction(float numberA,float numberB)
 {
-    return numeroA / numeroB;
+    float auxiliaryValue;
+
+    auxiliaryValue = (numberA)*(numberB);
+
+    return auxiliaryValue;
 }
 
-float funcionMultiplicacion (float numeroA, float numeroB)
+float divisionFunction(float numberA,float numberB)
 {
-    return numeroA * numeroB;
+    float auxiliaryValue;
+
+    auxiliaryValue = (numberA)/(numberB);
+
+    return auxiliaryValue;
 }
 
-int funcionFactorial (float numero)
+int factorialFunction (float number)
 {
+
     int factorial;
+    int returnValue;
     long int factor = 1;
-    long int retorno;
 
-    if (numero== (int) numero && numero>=0)
+    if (number== (int) number && number>=0)
     {
-        for (factorial = numero; factorial > 0; factorial--)
+        for (factorial = number; factorial > 0; factorial--)
         {
             factor = factor * factorial;
+            returnValue=factor;
         }
-        retorno=(factor);
     }
-    else if (numero<0)
+    else if (number<0)
     {
-        retorno=-1;
+        returnValue= -1;
     }
     else
     {
-        retorno=0;
+        returnValue= 0;
     }
-
-    return retorno;
+    return (returnValue);
 }
 
-
+void resultMessage(char msg[], float valueResult)
+{
+    printf("%s %.2f\n\n", msg, valueResult);
+}
